@@ -1,1 +1,1 @@
-A dependent Hugo layout module. See https://github.com/theNewDynamic/hugo-starter to start
+A dependent Hugo layout module. See [Hugo Starter](https://github.com/theNewDynamic/hugo-starter) to start
