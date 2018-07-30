@@ -1,0 +1,11 @@
+{{ $reviews := where .Page.Site.RegularPages "Section" "review" }}
+{{ if $reviews }}
+  <div id="praise">
+    {{ $count := .count | default 1 }}
+    {{ range first $count ($reviews) }}
+      <div class="mb-32">
+        {{ partial "_components/quote-fancy.html" . }}
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

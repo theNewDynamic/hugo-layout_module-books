@@ -1,0 +1,7 @@
+{{ with .Params.description }}
+  <div class="leading-normal font-bold text-lg mb-3 mt-3 lg:mt-0">
+    {{- . | markdownify -}}
+  </div>
+{{ end }}
+
+{{/* {{if lt (len .) 50 }} text-3xl{{else}} text-2xl{{end}} */}}

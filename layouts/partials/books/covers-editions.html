@@ -1,0 +1,20 @@
+{{ if .Params.editions }}
+  {{ if ge (.Params.editions | len) 2 }}
+    {{ with .Params.editions }}
+      <div class="grid grid-columns-2 lg:grid-columns-3 grid-gap-4">
+        {{ range after 1 . }}{{ $binding := .binding }}{{ $description := .description }}
+          {{ with .cover_image }}
+            <figure class="lazyload list-reset" data-noscript="">
+              <noscript>
+                <img src="{{ . }}" alt="Cover image for " class="lazyload shadow-lg mt-1 mb-2 h-64">
+                <figcaption class="text-xs font-sans">
+                  {{ with $description }}{{ . }}{{ end }}{{ with $binding }}({{ . }}){{ end }}
+                </figcaption>
+              </noscript>
+            </figure>
+          {{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+  {{ end }}
+{{ end }}

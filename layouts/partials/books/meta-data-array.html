@@ -1,0 +1,26 @@
+{{ $id := sha1 .File.TranslationBaseName }}
+<dl class="my-2 font-sans font-bold text-sm text-color-secondary">
+  {{ with index .Params.genre 0 -}}
+    <div class="text-xl mb-1">
+      <dt class="inline-block hidden">Genre</dt>
+      <dd class="inline-block">{{- . | humanize -}}</dd>
+    </div>
+  {{- end }}
+  {{ with .Params.editions }}
+    {{partial "_components/show-hide-button.html" (dict "label" "Edition Data" "id" $id "classes" "bg-primary-color text-primary-color-lightest my-4 px-2 py-1 rounded text-xs")}}
+    <div class="hidden-{{$id}} py-2 pb-3 w-full z-50">
+      {{ range  . }}
+        <div class="mb-4">
+          <dt class="block">
+            {{ with .description }}{{ . }}{{ end }}{{ with .binding }} ({{ . }}){{ end }}
+          </dt>
+          <dd class="block">
+            {{ with .publisher }}{{ . }}<br />{{ end }}
+            {{ with .date }}{{ dateFormat "January 2, 2006" . }}<br />{{ end }}
+            {{ with .isbn }}{{ . }}<br />{{ end }}
+          </dd>
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+  </dl>

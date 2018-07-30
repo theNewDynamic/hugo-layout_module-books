@@ -1,0 +1,11 @@
+{{ with .Params.editions}}
+  {{ range first 1 . }}
+    {{ with .cover_image  }}
+      <div class="lazyload" data-noscript="">
+        <noscript>
+          <img src="{{ . }}" alt="Cover image for " class="lazyload w-full shadow-lg mt-1 mb-2 max-h-screenf">
+        </noscript>
+      </div>
+    {{ end }}
+  {{ end }}
+{{ end }}

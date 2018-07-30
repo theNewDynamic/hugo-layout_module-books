@@ -1,0 +1,52 @@
+{{/* DEPRECATED IN FAVOR OF BUYLINKS_ARRAY */}}
+
+<div class="mt-4 smallprint-font">
+  <p class="text-sm fw6 mb-2">
+    Order from these retailers
+  </p>
+  {{/*
+  If we're using external links, only show them and not the generated links
+  */}}
+  {{ with .Params.buy_links_external }}
+
+    {{ range . }}
+      {{ if .link }}
+        <a href="{{.link}}" class="btn btn-buylinks">
+          {{ with .name }}{{- . -}}{{ end }}
+        </a>
+      {{ end }}
+    {{ end }}
+
+  {{ else }} {{/* Otherwise, show the generated links */}}
+      {{/* Always show the paperback in favor of HC, if it exists */}}
+    {{ with $.Param "editions_isbn.paperback" }}
+      {{- template "links" . -}}
+    {{ else }}
+      {{ with $.Param "editions_isbn.hardcover" }}
+        {{- template "links" . -}}
+      {{ end }}
+    {{ end }}
+
+    {{  with $.Param "editions_isbn.ebook" }}
+      {{- template "links_ebook" . -}}
+    {{ end }}
+
+  {{ end }}
+</div>
+
+{{ define "links" }}
+  <a href="//www.indiebound.org/product/info.jsp?isbn={{ . }}" target="_blank" class="btn btn-buylinks">
+    Your Independent Bookstore
+  </a>
+  <a href="//search.barnesandnoble.com/booksearch/isbnInquiry.asp?EAN={{ . }}" target="_blank" class="btn btn-buylinks">
+    Barnes & Noble
+  </a>
+  <span class='isbn10_{{ . }}'></span><!--  pulls in 10 digit ASIN for -->
+  {{ partial "books/amazon_convert_isbn_to_asin.js" (dict "edition" . ) }}
+{{ end }}
+
+{{ define "links_ebook" }}
+<a href="//itunes.apple.com/us/book/isbn{{ . }}" target="_blank" class="btn btn-buylinks">
+  Apple iBooks
+</a>
+{{ end }}

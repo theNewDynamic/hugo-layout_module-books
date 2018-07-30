@@ -1,0 +1,31 @@
+{{ define "main" }}
+  {{ $section := .Site.GetPage "section" .Section }}
+  <div class="page-list_default mx-auto min-h-screen">
+    {{- partial "_components/page-heading.html" . -}}
+    <div class="md:flex flex-wrap md:flex-row-reverse mx-auto">
+
+
+      <section class="pt5 min-vh-100">
+        {{ range first 10 (where .Site.RegularPages "Section" "book") }}
+        {{ $reviews := where (.Site.RegularPages) "Section" "review" }}
+        {{ $reviews_related := where ($reviews) ".Params.book" .File.Path }}
+        {{ if $reviews_related }}
+          <div id="praise" class="mb-32 ">
+            <h2 class="mt-5 mb-8">
+              Praise for <i>{{ .Title }}</i>
+            </h2>
+            {{ range ($reviews_related) }}
+              <div class="mb-32">
+                {{ partial "_components/quote-fancy.html" . }}
+              </div>
+            {{ end }}
+          </div>
+        {{ end }}
+        {{ end }}
+
+      </section>
+    </div>
+
+    {{/* {{- template "_internal/pagination.html" . -}} */}}
+  </div>
+{{ end }}
