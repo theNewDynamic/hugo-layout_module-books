@@ -1,9 +1,9 @@
 {{ $id := sha1 .File.TranslationBaseName }}
 <dl class="my-2 font-sans font-bold text-sm text-color-secondary">
-  {{ with index .Params.genre 0 -}}
+  {{ with .Params.genre -}}
     <div class="text-xl mb-1">
       <dt class="inline-block hidden">Genre</dt>
-      <dd class="inline-block">{{- . | humanize -}}</dd>
+      <dd class="inline-block">{{- index . 0 | humanize -}}</dd>
     </div>
   {{- end }}
   {{ with .Params.editions }}
