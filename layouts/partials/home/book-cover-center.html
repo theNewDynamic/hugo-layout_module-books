@@ -1,0 +1,15 @@
+<div class="w-full lg:w-1/2 md:mt-8 lg:px-8">
+  {{- partial "books/praise-featured.html" . -}}
+  {{/**
+    <div class="mt-8 px-4 md:px-0 md:hidden xl:block">
+    {{ partial "books/buylinks_array.html" (dict "item" . "count" "1") }}
+  </div> 
+  **/}}
+</div>
+
+<div class="w-full lg:w-2/5 lg:pt-2">
+  {{- partial "books/cover.html" . -}}
+</div>
+<div class="mt-8 px-8 mx-auto hidden md:block xl:hidden">
+  {{ partial "books/buylinks_array.html" (dict "item" . "count" "1") }}
+</div>
