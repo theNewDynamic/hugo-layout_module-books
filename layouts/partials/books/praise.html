@@ -1,5 +1,6 @@
 {{ $reviews := where .Page.Site.RegularPages "Section" "review" }}
 {{ $reviews_related := where ($reviews) ".Params.book" .Page.File.Path }}
+{{ $reviews_related := where ($reviews_related) ".Params.featured" "!=" true }}
 
 {{ if $reviews_related }}
   <div id="praise">
