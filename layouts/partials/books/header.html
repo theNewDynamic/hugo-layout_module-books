@@ -1,5 +1,5 @@
-<h1 class="page-heading leading-tight text-4xl lg:text-5xl">
-  <a href="{{ .URL }}" class="text-primary-color dim no-underline">
+<h1 id="{{ .Title | urlize }}" class="page-heading leading-tight text-4xl lg:text-5xl">
+  <a href="{{ .Permalink | relURL }}" class="text-primary-color dim no-underline">
     {{- .Title -}}
   </a>
 </h1>
